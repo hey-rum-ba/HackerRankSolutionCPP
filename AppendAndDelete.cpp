@@ -16,19 +16,25 @@ string rtrim(const string &);
  */
 
 string appendAndDelete(string s, string t, int k) {
-    int count=0;
-    int i=0,j=0;
-    for(int a=0;a<t.size();a++)
-    {
-        if(s[i]==t[j])
-        {
-            i++,j++,count++;
-        }
-        
+    int i = 0, s_len, t_len;
+    s_len = s.length();
+    t_len = t.length();
+    if(k >= (s_len+t_len)) {
+        return "Yes";
     }
-    if((k-count) >= (s.size()-t.size())) cout<<"Yes"<<endl;
-    else cout<<"No"<<endl;
-return 0;
+    while(i < s_len && i < t_len) {
+        if(s[i] != t[i]) {
+            break;
+        }
+        i++;
+    }
+    k = k - (s_len+t_len) + (2 * i);
+    if(k < 0) {
+        return "No";
+    }else if (k % 2 == 0) {
+        return "Yes";
+    }
+    return "No";
 }
 int main()
 {
