@@ -20,12 +20,12 @@ void kaprekarNumbers(int p, int q) {
         string s = to_string(square);
         int d = s.size()/2;
         if(d == 0){
-            if(i == square){
+            if(i == square){ //for single digit numbers ie 1 & 9
                 res.push_back(i);
             }
             continue;
         }
-        if(stoll(s.substr(0,d))+stoll(s.substr(d,s.size()-d)) == i){
+        if(stoll(s.substr(0,d))+stoll(s.substr(d,s.size()-d)) == i){ //for rest all
             res.push_back(i);
         }
            }
