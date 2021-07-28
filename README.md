@@ -1,4 +1,4 @@
- # _HakerRankSolution in CPP_
+ # _HackerRankSolution in CPP_
  
  ~~~
  #include<bits/stdc++.h>
