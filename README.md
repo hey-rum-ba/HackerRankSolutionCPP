@@ -7,6 +7,7 @@
  int main()
  {
  cout<<"Dont stop solving"<<endl;
+ return 0;
  }
 ~~~
 
