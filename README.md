@@ -1,4 +1,6 @@
- # _HackerRankSolution in CPP_
+ # _HackerRank Solution in CPP_
+ 
+![ProblemsolvingStar](https://user-images.githubusercontent.com/61419184/127466024-b9f1928b-a340-4d26-b7ed-930d84ef66c1.PNG) 
  
  ~~~
  #include<bits/stdc++.h>
