@@ -1,24 +1,142 @@
-/*
-Detect a cycle in a linked list. Note that the head pointer may be 'NULL' if the list is empty.
+#include <bits/stdc++.h>
 
-A Node is defined as: 
-    struct Node {
+using namespace std;
+
+class SinglyLinkedListNode {
+    public:
         int data;
-        struct Node* next;
-    }
-*/
+        SinglyLinkedListNode *next;
 
-bool has_cycle(Node* head) {
-    if (head == NULL) return false;
-    
-    Node *slow = head;
-    Node *fast = head->next;
-    while (slow != fast) {
-        if (fast == NULL || fast->next == NULL) return false;
-        
+        SinglyLinkedListNode(int node_data) {
+            this->data = node_data;
+            this->next = nullptr;
+        }
+};
+
+class SinglyLinkedList {
+    public:
+        SinglyLinkedListNode *head;
+        SinglyLinkedListNode *tail;
+
+        SinglyLinkedList() {
+            this->head = nullptr;
+            this->tail = nullptr;
+        }
+
+        void insert_node(int node_data) {
+            SinglyLinkedListNode* node = new SinglyLinkedListNode(node_data);
+
+            if (!this->head) {
+                this->head = node;
+            } else {
+                this->tail->next = node;
+            }
+
+            this->tail = node;
+        }
+};
+
+void print_singly_linked_list(SinglyLinkedListNode* node, string sep, ofstream& fout) {
+    while (node) {
+        fout << node->data;
+
+        node = node->next;
+
+        if (node) {
+            fout << sep;
+        }
+    }
+}
+
+void free_singly_linked_list(SinglyLinkedListNode* node) {
+    while (node) {
+        SinglyLinkedListNode* temp = node;
+        node = node->next;
+
+        free(temp);
+    }
+}
+
+// Complete the has_cycle function below.
+
+/*
+ * For your reference:
+ *
+ * SinglyLinkedListNode {
+ *     int data;
+ *     SinglyLinkedListNode* next;
+ * };
+ *
+ */
+bool has_cycle(SinglyLinkedListNode* head) {
+    if (head == NULL){
+        return 0;
+    }
+
+    SinglyLinkedListNode* slow = head;
+    SinglyLinkedListNode* fast = head;
+
+    while (fast != NULL && fast->next != NULL){
         slow = slow->next;
         fast = fast->next->next;
+
+        if (slow == fast){
+            return 1;
+        }
     }
+
+    return 0;
     
-    return true;
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    int tests;
+    cin >> tests;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    for (int tests_itr = 0; tests_itr < tests; tests_itr++) {
+        int index;
+        cin >> index;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        SinglyLinkedList* llist = new SinglyLinkedList();
+
+        int llist_count;
+        cin >> llist_count;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        for (int i = 0; i < llist_count; i++) {
+            int llist_item;
+            cin >> llist_item;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            llist->insert_node(llist_item);
+        }
+      
+      	SinglyLinkedListNode* extra = new SinglyLinkedListNode(-1);
+      	SinglyLinkedListNode* temp = llist->head;
+      
+      	for (int i = 0; i < llist_count; i++) {
+            if (i == index) {
+          		extra = temp;
+            }
+          	
+          	if (i != llist_count-1) {
+          		temp = temp->next;
+            }
+        }
+      
+      	temp->next = extra;
+
+        bool result = has_cycle(llist->head);
+
+        fout << result << "\n";
+    }
+
+    fout.close();
+
+    return 0;
 }
