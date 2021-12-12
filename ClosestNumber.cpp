@@ -18,10 +18,11 @@ vector<int> closestNumbers(vector<int> arr) {
     sort(arr.begin(),arr.end());
     int diff[arr.size()];
     adjacent_difference(arr.begin(),arr.end(),diff);
+    cout<<diff[3];
     int min=*min_element(diff+1,diff+arr.size());
-
+     cout<<min;
 for (int i=1;i<arr.size();i++) {
-    if (diff[i]==min)  res.push_back(arr[i-1]); res.push_back(arr[i]);
+    if (diff[i]==min)  {res.push_back(arr[i-1]); res.push_back(arr[i]);}
 }
     return res;
 }
