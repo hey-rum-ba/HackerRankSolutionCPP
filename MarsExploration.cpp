@@ -10,11 +10,11 @@ using namespace std;
  */
 
 int marsExploration(string s) {
-    string sos = "SOS";
+    string SOS = "SOS";
         int count = 0;
         for (int i = 0; i < s.length(); i++) {
 
-            if (s[i] != sos[i % 3]) 
+            if (s[i] != SOS[i % 3]) 
                 count++;
 
         }
