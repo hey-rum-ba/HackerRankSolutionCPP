@@ -13,7 +13,10 @@ int marsExploration(string s) {
     string sos = "SOS";
         int count = 0;
         for (int i = 0; i < s.length(); i++) {
-            if (s[i] != sos[i % 3]) count++;
+
+            if (s[i] != sos[i % 3]) 
+                count++;
+
         }
         return count;
 }
