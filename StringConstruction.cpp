@@ -28,7 +28,7 @@ int stringConstruction(string s) {
         }
         
     }
-    return c/s.size();
+    return c/n;
 }
 
 int main()
@@ -75,3 +75,4 @@ string rtrim(const string &str) {
 
     return s;
 }
+          
