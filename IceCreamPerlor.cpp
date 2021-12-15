@@ -16,16 +16,16 @@ vector<string> split(const string &);
  */
 
 vector<int> icecreamParlor(int m, vector<int> arr) {
-    vector<int> res;
-        for(int i = 0; i < arr.size() ; i++){
-            for(int j = i+1 ; j < arr.size() ; j++){
-                if(arr[i] + arr[j] == m){
-                    res[0] = i+1;
-                    res[1] = j+1;
-                }
-            }
+    unordered_map<int,int>mp;
+    for(int i=0;i<arr.size();i++){
+        mp[arr[i]]=i;
+    }
+    for(int i=0;i<arr.size();i++){
+        if(mp.find(m-arr[i])!=mp.end() && mp[m-arr[i]]!=i){
+            return {i+1,mp[m-arr[i]]+1};
         }
-        return res;
+    }
+    return {};
 }
 
 int main()
