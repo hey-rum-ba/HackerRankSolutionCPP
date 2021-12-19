@@ -13,30 +13,19 @@ string rtrim(const string &);
  */
 
 int gemstones(vector<string> arr) {
-    int n,i,j,size,count;
-    int mask[26];
-    count=0;
-    for(i=0;i<26;i++)
-        {
-            mask[i]=0;
+    set<char> res;
+    for (char c : arr[0]) {
+        res.insert(c);
+    }
+    for (int i=1; i<arr.size(); i++) {
+        for (auto c : res) {
+            if (arr[i].find(c) == string::npos) {
+                res.erase(c);
+            }
         }
-    n=arr.size();
-    for(i=0;i<n;i++)
-        {
-            size=(arr[i].size());
-            for(j=0;j<size;j++)
-                {
-                    if(mask[abs(arr[j]-'a')]==i)
-                        mask[abs(arr[j]-'a')]++;
-                }
-       }
-    for(i=0;i<26;i++)
-        {
-            if(mask[i]==n)
-                count++;
+        if (res.size() == 0) break;
         }
-    
-    return count;
+ return res.size();
 }
 
 int main()
