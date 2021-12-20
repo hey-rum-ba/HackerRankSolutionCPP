@@ -13,22 +13,18 @@ string rtrim(const string &);
  */
 
 int stringConstruction(string s) {
-    int c=0;
-    int n = s.size();
-    for(int i = 0; i < n; i++){
-        vector <int> arr(26,0);
-        for(int i=0;i<s.length();i++)
+   
+int count = 0; unordered_map<char, int> h;
+
+        for(int i = 0;i < s.length();i++)
             {
-            ++arr[s[i]-'a'];
+            if(h.find(s[i])== h.end())
+             {   
+            h.insert({s[i], 1});
+            count++;
+            }
         }
-        for(int j=0;j<26;j++)
-            {
-            if(arr[j]!=0)
-                c++;
-        }
-        
-    }
-    return c/n;
+        return count;
 }
 
 int main()
