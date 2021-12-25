@@ -31,4 +31,4 @@ int main(){
   	isc.description();
     isc.triangle();
     return 0;
-}
+}t
